@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raghav Matta — Full Stack · AI · Occasionally Funny</title>
+<meta name="description" content="Raghav Matta — System Engineer at TCS, ex-AI Engineer at Scale AI, ex-Samsung PRISM. Builds microservices, LLM things and questionable memes.">
+<meta name="theme-color" content="#0a0a0b">
+<meta property="og:title" content="Raghav Matta — portfolio.exe">
+<meta property="og:description" content="Full stack engineer. AI trainer. Hackathon menace. Press ⌘K.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%230a0a0b'/><text x='50' y='68' font-size='58' text-anchor='middle' font-family='monospace' font-weight='700' fill='%23c6ff3d'>R_</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<canvas id="matrix" aria-hidden="true"></canvas>
+<div class="progress" id="progress"></div>
+
+<!-- boot screen -->
+<div class="boot" id="boot" aria-hidden="true"><pre id="bootText"></pre></div>
+
+<header class="nav">
+  <a href="#top" class="logo" id="logo" aria-label="Home">R<span>_</span></a>
+  <nav>
+    <a href="#about">about</a>
+    <a href="#log">git log</a>
+    <a href="#work">work</a>
+    <a href="#trophies">trophies</a>
+    <a href="#memes">memes</a>
+    <a href="#contact">contact</a>
+  </nav>
+  <button class="kbd-btn" id="openPalette" aria-label="Open command palette">
+    <kbd>⌘</kbd><kbd>K</kbd>
+  </button>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="status"><i></i> currently shipping @ <b>TCS Digital</b></div>
+    <h1 class="name" aria-label="Raghav Matta">
+      <span class="glitch" data-text="Raghav">Raghav</span>
+      <span class="glitch outline" data-text="Matta">Matta</span>
+    </h1>
+    <p class="role">
+      <span class="prompt">&gt;</span> <span id="typed"></span><span class="caret">▍</span>
+    </p>
+    <p class="blurb">
+      I build microservices that don't wake you at 3 AM, and I've graded
+      <b>2,000+</b> LLM answers so you don't have to. Hackathon runner-up,
+      IEEE-published, mass producer of <i>"works on my machine."</i>
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="Raghav_Matta_Resume.pdf" download>
+        <span>Download résumé</span><em>↓</em>
+      </a>
+      <a class="btn" href="#contact"><span>Hire me</span><em>→</em></a>
+      <button class="btn ghost" id="randomMeme"><span>Surprise me</span><em>🎲</em></button>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="term" id="term">
+      <div class="term-bar">
+        <i class="r"></i><i class="y"></i><i class="g"></i>
+        <span>raghav@portfolio: ~</span>
+      </div>
+      <div class="term-body" id="termBody" aria-live="polite"></div>
+      <form class="term-input" id="termForm" autocomplete="off">
+        <span>raghav@web:~$</span>
+        <input id="termInput" type="text" spellcheck="false" aria-label="Terminal input" placeholder="type 'help'">
+      </form>
+    </div>
+    <p class="hint">↑ it's a real terminal. try <code>help</code>, <code>sudo hire raghav</code>, or <code>matrix</code></p>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>JAVA</span><span>SPRING BOOT</span><span>ANGULAR</span><span>PYTHON</span><span>LANGCHAIN</span><span>RLHF</span><span>REACT</span><span>NODE</span><span>KAFKA</span><span>AWS</span><span>BLOCKCHAIN</span><span>TENSORFLOW</span>
+    <span>JAVA</span><span>SPRING BOOT</span><span>ANGULAR</span><span>PYTHON</span><span>LANGCHAIN</span><span>RLHF</span><span>REACT</span><span>NODE</span><span>KAFKA</span><span>AWS</span><span>BLOCKCHAIN</span><span>TENSORFLOW</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <h2 class="sec-title"><small>01</small> README<span>.md</span></h2>
+  <div class="about-grid">
+    <div class="card readme reveal">
+      <p><b># who dis?</b></p>
+      <p>
+        Electronics &amp; Computer Engineering grad from <b>VIT Chennai</b> (2025),
+        now a <b>System Engineer at TCS Digital</b> writing Spring Boot + Angular
+        microservices. Before that I spent six months teaching GPT-4 and Gemini
+        manners at <b>Scale AI</b>, and before <i>that</i> I did on-device ML research
+        for <b>Samsung PRISM</b>.
+      </p>
+      <p>
+        Outside work: hackathons (won a few, lost sleep at all), a blockchain KYC
+        thing, and an <b>IEEE paper</b> asking whether quantum ML can spot plastic
+        better than regular ML. <span class="mark">(it's complicated)</span>
+      </p>
+      <p class="muted">// TODO: touch grass</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat reveal"><b data-count="20" data-suffix="+">0</b><span>REST APIs shipped</span></div>
+      <div class="stat reveal"><b data-count="35" data-suffix="%">0</b><span>faster responses</span></div>
+      <div class="stat reveal"><b data-count="2000" data-suffix="+">0</b><span>LLM tasks reviewed</span></div>
+      <div class="stat reveal"><b data-count="100" data-suffix="+">0</b><span>PRs reviewed for SWE agents</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GIT LOG -->
+<section id="log" class="sec">
+  <h2 class="sec-title"><small>02</small> git log<span> --career</span></h2>
+  <div class="gitlog">
+    <article class="commit reveal">
+      <div class="hash">a7f3c9e <em class="tag head">HEAD → main</em></div>
+      <div class="cbody">
+        <h3>System Engineer · Tata Consultancy Services (Digital)</h3>
+        <time>Jul 2025 — Present</time>
+        <p>Full stack on a microservices web platform. Designed and integrated <b>20+ REST APIs</b> and cut response times by <b>35%</b>.</p>
+        <div class="tags"><span>Java</span><span>Spring Boot</span><span>Angular</span><span>Microservices</span></div>
+      </div>
+    </article>
+    <article class="commit reveal">
+      <div class="hash">5b21d08 <em class="tag">scale-ai</em></div>
+      <div class="cbody">
+        <h3>AI Engineer · Scale AI (Outlier)</h3>
+        <time>Dec 2024 — Jun 2025</time>
+        <p>Evaluated &amp; fine-tuned GPT-4 / Gemini with RLHF workflows. Reviewed <b>2,000+</b> prompt–response tasks and <b>100+</b> GitHub PRs to sharpen SWE agents. Wrote test cases that lifted instruction accuracy by <b>40%</b>.</p>
+        <div class="tags"><span>RLHF</span><span>SFT</span><span>Prompt Eng</span><span>SWE Agent Review</span></div>
+      </div>
+    </article>
+    <article class="commit reveal">
+      <div class="hash">e90d4aa <em class="tag">samsung</em></div>
+      <div class="cbody">
+        <h3>PRISM Intern · Samsung</h3>
+        <time>Oct 2023 — Apr 2024</time>
+        <p>Research on machine learning for Android on-device personalization.</p>
+        <div class="tags"><span>Java</span><span>Android AOSP</span><span>TensorFlow</span></div>
+      </div>
+    </article>
+    <article class="commit reveal">
+      <div class="hash">1c04b77 <em class="tag">init</em></div>
+      <div class="cbody">
+        <h3>B.Tech, Electronics &amp; Computer Engineering · VIT Chennai</h3>
+        <time>Sep 2021 — Aug 2025 · CGPA 8.2</time>
+        <p>Led operations, content &amp; strategy at the Tech Researchers Club. <span class="muted">commit message: "initial commit, no idea what I'm doing"</span></p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="sec">
+  <h2 class="sec-title"><small>03</small> things I<span> built</span></h2>
+  <div class="projects">
+    <article class="proj card reveal" data-tilt>
+      <div class="proj-top"><span class="num">01</span><span class="emoji">🤖</span></div>
+      <h3>DocuBot</h3>
+      <p>AI agent that translates legalese and medical jargon into human. Contextual chunking, semantic search and LLM summarization.</p>
+      <div class="tags"><span>Python</span><span>LangChain</span><span>OpenAI</span><span>FAISS</span><span>Streamlit</span></div>
+      <q>"I have read the terms and conditions" — nobody, ever. Except this bot.</q>
+    </article>
+    <article class="proj card reveal" data-tilt>
+      <div class="proj-top"><span class="num">02</span><span class="emoji">📦</span></div>
+      <h3>SwiftDrop</h3>
+      <p>Real-time parcel delivery platform with user, driver &amp; admin dashboards. RBAC, MVC, live Google Maps tracking over a Kafka event flow.</p>
+      <div class="tags"><span>Node</span><span>React</span><span>MongoDB</span><span>Kafka</span><span>WebSockets</span></div>
+      <q>Where's my package? → literally a dot on a map. Moving.</q>
+    </article>
+    <article class="proj card reveal" data-tilt>
+      <div class="proj-top"><span class="num">03</span><span class="emoji">🪪</span></div>
+      <h3>Dauth KYC</h3>
+      <p>Verify Aadhaar &amp; PAN via OTP and mint a Verified NFT for seamless Dapp authentication.</p>
+      <div class="tags"><span>Blockchain</span><span>Next.js</span></div>
+      <q>Yes, your identity is now a JPEG. No, it's not a monkey.</q>
+    </article>
+    <article class="proj card reveal" data-tilt>
+      <div class="proj-top"><span class="num">04</span><span class="emoji">🔬</span></div>
+      <h3>Quantum vs Classical ML</h3>
+      <p>IEEE 2025 (6th INDICON): hybrid quantum models vs classical ML for plastic waste detection.</p>
+      <div class="tags"><span>Quantum ML</span><span>Research</span><span>IEEE</span></div>
+      <q>Schrödinger's accuracy: both high and low until you submit the paper.</q>
+    </article>
+    <article class="proj card reveal" data-tilt>
+      <div class="proj-top"><span class="num">05</span><span class="emoji">🛡️</span></div>
+      <h3>Crypto Analyzer</h3>
+      <p>Kavach 2023 (Top 5, Blockchain, India). Pulled data from 4 major networks; praised by the Ministry of Home Affairs, Govt. of India.</p>
+      <div class="tags"><span>Blockchain</span><span>APIs</span><span>CyberSec</span></div>
+      <q>The government said "nice" and I've been insufferable since.</q>
+    </article>
+    <article class="proj card reveal ghost-card" data-tilt>
+      <div class="proj-top"><span class="num">06</span><span class="emoji">🫥</span></div>
+      <h3>Your idea here</h3>
+      <p>Got something weird, ambitious or slightly cursed? Let's build it.</p>
+      <a class="btn primary small" href="#contact"><span>pitch me</span><em>→</em></a>
+    </article>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="sec">
+  <h2 class="sec-title"><small>04</small> inventory<span>.json</span></h2>
+  <p class="muted center">psst — chips are draggable. go on, throw them around.</p>
+  <div class="chips" id="chips">
+    <span class="chip">Java</span><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">C</span>
+    <span class="chip">Spring Boot</span><span class="chip">Angular</span><span class="chip">React</span><span class="chip">Next.js</span>
+    <span class="chip">Node</span><span class="chip">Express</span><span class="chip">Django</span><span class="chip">Flask</span>
+    <span class="chip">React Native</span><span class="chip">Flutter</span><span class="chip">Tailwind</span><span class="chip">TensorFlow</span>
+    <span class="chip">LangChain</span><span class="chip">FAISS</span><span class="chip">RLHF</span><span class="chip">Kafka</span>
+    <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Redis</span><span class="chip">MongoDB</span>
+    <span class="chip">AWS</span><span class="chip">Azure</span><span class="chip">GCP</span><span class="chip">Vercel</span>
+    <span class="chip">Netlify</span><span class="chip">Heroku</span><span class="chip">Figma</span><span class="chip">Git</span>
+  </div>
+</section>
+
+<!-- TROPHIES -->
+<section id="trophies" class="sec">
+  <h2 class="sec-title"><small>05</small> achievements<span> unlocked</span></h2>
+  <div class="trophies">
+    <div class="trophy reveal"><i>🏆</i><div><h4>Defy '24 Web3 Hackathon — Runner-up</h4><p>VIT's biggest hackathon. Account abstraction domain.</p></div><span>+500 XP</span></div>
+    <div class="trophy reveal"><i>🛡️</i><div><h4>Kavach 2023 — Top 5, Blockchain, India</h4><p>National CyberSecurity Hackathon. Recognised by the Ministry of Home Affairs.</p></div><span>+800 XP</span></div>
+    <div class="trophy reveal"><i>🇮🇳</i><div><h4>Solving for India — Institute Winner</h4><p>Hackathon by Google &amp; GeeksforGeeks.</p></div><span>+400 XP</span></div>
+    <div class="trophy reveal"><i>📄</i><div><h4>IEEE Publication 2025</h4><p>Quantum vs classical ML for plastic detection, IEEE 6th INDICON.</p></div><span>+1000 XP</span></div>
+    <div class="trophy reveal"><i>☁️</i><div><h4>AWS Cloud Practitioner</h4><p>Also: Java Development on Oracle Cloud (OCI).</p></div><span>+300 XP</span></div>
+  </div>
+</section>
+
+<!-- MEMES -->
+<section id="memes" class="sec">
+  <h2 class="sec-title"><small>06</small> meme<span> department</span></h2>
+  <p class="muted center">engineering-approved. click a card to shuffle the caption.</p>
+  <div class="memes">
+    <div class="meme reveal" data-i="0"></div>
+    <div class="meme reveal" data-i="1"></div>
+    <div class="meme reveal" data-i="2"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec contact">
+  <p class="muted center">// last section, I promise</p>
+  <h2 class="big">Let's build<br><span class="outline">something loud.</span></h2>
+  <button class="mail" id="mail" data-mail="mattaraghav67@gmail.com">
+    mattaraghav67@gmail.com <em id="mailHint">click to copy</em>
+  </button>
+  <div class="socials">
+    <a class="btn" href="https://github.com/Rxghavdev" target="_blank" rel="noopener"><span>GitHub</span><em>↗</em></a>
+    <a class="btn" href="https://linkedin.com/in/rxghavdev" target="_blank" rel="noopener"><span>LinkedIn</span><em>↗</em></a>
+    <a class="btn" href="mailto:mattaraghav67@gmail.com"><span>Email</span><em>↗</em></a>
+  </div>
+  <button class="dont" id="dont">⚠ do not press</button>
+</section>
+</main>
+
+<footer class="foot">
+  <span>© <span id="year"></span> Raghav Matta</span>
+  <span id="uptime">uptime 00:00:00</span>
+  <span>hand-coded · zero frameworks · 0 cookies · ∞ vibes</span>
+</footer>
+
+<!-- command palette -->
+<div class="palette" id="palette" hidden>
+  <div class="pal-box" role="dialog" aria-label="Command palette">
+    <input id="palInput" placeholder="Type a command or jump to a section…" autocomplete="off" spellcheck="false">
+    <ul id="palList"></ul>
+    <div class="pal-foot"><kbd>↑↓</kbd> navigate <kbd>↵</kbd> run <kbd>esc</kbd> close</div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
