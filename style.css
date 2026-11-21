@@ -188,7 +188,7 @@ kbd{font-size:11px;padding:1px 6px;border:1px solid var(--line);border-bottom-wi
 .meme{aspect-ratio:1;border-radius:18px;border:1px solid var(--line);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:20px;text-align:center;user-select:none;transition:transform .3s}
 .meme:hover{transform:rotate(-1.5deg) scale(1.02)}
 .meme .mt,.meme .mb{font:900 clamp(20px,3.2vw,30px)/1.05 Impact,'Arial Black',sans-serif;text-transform:uppercase;color:#fff;letter-spacing:.01em;-webkit-text-stroke:1.5px #000;paint-order:stroke fill;text-shadow:3px 3px 0 #000;z-index:1}
-.meme .me{font-size:clamp(80px,13vw,130px);z-index:1;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5));transition:transform .4s}
+.meme .me{display:none;font-size:clamp(80px,13vw,130px);z-index:1;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5));transition:transform .4s}
 .meme:hover .me{transform:scale(1.15) rotate(-6deg)}
 .meme.pop{animation:pop .4s}
 @keyframes pop{40%{transform:scale(.94) rotate(2deg)}}
@@ -234,3 +234,16 @@ body.shake main{animation:shake .15s 8}
   *{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
   .reveal{opacity:1;transform:none}
 }
+
+.links{display:flex;gap:14px;margin-top:16px}
+.links a{font:500 12px var(--mono);color:var(--acc);border-bottom:1px dashed var(--acc);padding-bottom:1px}
+.links a:hover{color:#000;background:var(--acc)}
+.proj .links+q{padding-top:14px}
+.catpop{position:fixed;inset:0;z-index:97;background:rgba(0,0,0,.82);backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px}
+.catpop[hidden]{display:none}
+.catbox{position:relative;width:min(460px,92vw);text-align:center;animation:catin .35s cubic-bezier(.34,1.6,.5,1)}
+.catbox img{width:100%;max-height:70vh;object-fit:cover;border-radius:18px;display:block;border:2px solid var(--acc)}
+.catbox .mt,.catbox .mb{position:absolute;left:0;right:0;padding:0 12px;font:900 clamp(26px,6vw,40px)/1.05 Impact,'Arial Black',sans-serif;color:#fff;text-transform:uppercase;-webkit-text-stroke:2px #000;paint-order:stroke fill;text-shadow:3px 3px 0 #000}
+.catbox .mt{top:14px}.catbox .mb{bottom:48px}
+.catbox small{display:block;margin-top:12px;font:12px var(--mono);color:var(--muted)}
+@keyframes catin{from{opacity:0;transform:scale(.5) rotate(-8deg)}}

@@ -179,15 +179,18 @@
 
   /* ---------- memes ---------- */
   const memes = [
-    { e: '🐛', bg: 'linear-gradient(135deg,#1d1030,#3b1b5c)', c: [['IT WORKS ON MY MACHINE', 'THEN WE SHIP YOUR MACHINE'], ['IT\'S NOT A BUG', 'IT\'S AN UNDOCUMENTED FEATURE'], ['FIXED 1 BUG', 'CREATED 7 NEW FEATURES']] },
-    { e: '🤖', bg: 'linear-gradient(135deg,#0d2a1e,#124d33)', c: [['"I APOLOGIZE FOR THE CONFUSION"', 'SAYS THE LLM, CONFIDENTLY WRONG AGAIN'], ['ME: REVIEWS 2,000 PROMPTS', 'ALSO ME: STILL SAYS PLEASE TO CHATGPT'], ['RLHF IS JUST', 'PARENTING WITH EXTRA STEPS']] },
-    { e: '☕', bg: 'linear-gradient(135deg,#2e1a0d,#5a3414)', c: [['ME: ONE QUICK HOTFIX', 'THE HOTFIX: 4 HOURS, 12 FILES'], ['DEPLOY ON FRIDAY?', 'BOLD OF YOU TO ASSUME I HAVE A WEEKEND'], ['35% FASTER API', 'STILL BLAMED ON THE NETWORK']] }
+    { img: 'grumpy.jpg', pos: 'center 8%', c: [['I HAVE NO IDEA WHAT I\'M DOING', 'AND NEITHER DOES PRODUCTION'], ['LLM: "I\'M 100% SURE"', 'NO.'], ['I HAD A GOOD CODE REVIEW ONCE', 'IT WAS TERRIBLE']] },
+    { img: 'keyboard.jpg', pos: 'center', c: [['SENIOR DEV: IT\'S AN EASY FIX', 'CAT ON KEYBOARD: 400 COMMITS LATER'], ['ME WRITING CODE', 'DEFINITELY NOT FROM STACKOVERFLOW'], ['FIXED ONE BUG', 'CAT WALKED ON KEYBOARD. 7 NEW ONES']] },
+    { img: 'angry.jpg', pos: 'center', c: [['ME: PUSHES TO MAIN ON FRIDAY', 'THE TEAM:'], ['IT WORKS ON MY MACHINE', 'THEN WE\'LL SHIP YOUR MACHINE'], ['"JUST A SMALL CHANGE"', 'THE CODEBASE:']] },
+    { img: 'shocked.jpg', pos: 'center', c: [['PROD IS DOWN', 'AND IT\'S MY DEPLOY'], ['HUH?', 'IT PASSED LOCALLY'], ['THEY WANT HOW MANY', 'REST APIS BY FRIDAY?']] },
+    { img: 'cute.jpg', pos: 'center', c: [['BUILD PASSES FIRST TRY', 'I DON\'T TRUST IT'], ['ME AFTER CUTTING API', 'RESPONSE TIME BY 10%'], ['TESTS ALL GREEN', 'WHAT DID I BREAK?']] },
+    { img: 'sleepy.jpg', pos: 'center', c: [['ME AT 3 AM', 'DEBUGGING WHAT I WROTE AT 3 PM'], ['REVIEWING MY 2001ST', 'LLM RESPONSE TODAY'], ['STANDUP IN 5 MINUTES', 'I HAVE NOT SLEPT']] }
   ];
-  const state = [0, 0, 0];
+  const state = memes.map(() => 0);
   const paint = (el, i, bump) => {
     const m = memes[i]; if (bump) state[i] = (state[i] + 1) % m.c.length;
-    el.style.background = m.bg;
-    el.innerHTML = `<div class="mt">${m.c[state[i]][0]}</div><div class="me">${m.e}</div><div class="mb">${m.c[state[i]][1]}</div>`;
+    el.style.background = `linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.35)), url(assets/cats/${m.img}) ${m.pos}/cover`;
+    el.innerHTML = `<div class="mt">${m.c[state[i]][0]}</div><div></div><div class="mb">${m.c[state[i]][1]}</div>`;
     if (bump) { el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
   };
   $$('.meme').forEach(el => { const i = +el.dataset.i; paint(el, i); el.addEventListener('click', () => paint(el, i, true)); });
@@ -198,6 +201,17 @@
     toast('<b>meme.exe</b> deployed 🎲');
   });
 
+  /* ---------- cat popup ---------- */
+  const catpop = $('#catpop');
+  const catPop = (caps, idx) => {
+    const m = memes[idx ?? Math.floor(Math.random() * memes.length)];
+    $('#catImg').src = 'assets/cats/' + m.img;
+    $('#catTop').textContent = caps[0]; $('#catBot').textContent = caps[1];
+    catpop.hidden = false;
+  };
+  catpop.addEventListener('click', () => { catpop.hidden = true; });
+  addEventListener('keydown', e => { if (e.key === 'Escape') catpop.hidden = true; });
+
   /* ---------- contact ---------- */
   const mail = $('#mail');
   mail.addEventListener('click', async () => {
@@ -207,7 +221,8 @@
   });
   $('#dont').addEventListener('click', () => {
     document.body.classList.add('shake'); confetti(160);
-    toast('<b>I said do not press.</b> Achievement unlocked: Curious Engineer 🏅');
+    catPop(['I SAID', 'DO NOT PRESS'], 3);
+    toast('<b>Achievement unlocked:</b> Curious Engineer 🏅');
     setTimeout(() => document.body.classList.remove('shake'), 1300);
   });
 
@@ -255,12 +270,12 @@
   <span class="c">contact</span>     how to reach me
   <span class="c">resume</span>      download my résumé
   <span class="c">theme</span> &lt;lime|pink|cyan|orange|violet&gt;
-  <span class="c">matrix</span> · <span class="c">party</span> · <span class="c">flip</span> · <span class="c">coffee</span> · <span class="c">clear</span>
+  <span class="c">matrix</span> · <span class="c">party</span> · <span class="c">flip</span> · <span class="c">coffee</span> · <span class="c">meow</span> · <span class="c">clear</span>
   <span class="d">…and a few secrets. Konami code works too.</span>`),
     whoami: () => out('Raghav Matta — System Engineer @ TCS, ex-Scale AI, ex-Samsung PRISM.\nBuilds backends, trains LLMs, wins (some) hackathons.'),
     skills: () => out('<span class="c">lang</span>   Java · Python · JavaScript · C\n<span class="c">fw</span>     Spring Boot · Angular · React · Next · Node · Django · Flask · Flutter\n<span class="c">ai</span>     TensorFlow · LangChain · FAISS · RLHF\n<span class="c">data</span>   PostgreSQL · MySQL · Redis · MongoDB · Kafka\n<span class="c">cloud</span>  AWS · Azure · GCP'),
     projects: () => { out('1. DocuBot        — AI for legal/medical docs\n2. SwiftDrop      — realtime delivery, Kafka + Maps\n3. Dauth KYC      — Aadhaar/PAN → Verified NFT\n4. Quantum ML     — IEEE 2025 paper\n5. Crypto Analyzer— Kavach 2023, Top 5 India'); setTimeout(() => go('work'), 500); },
-    exp: () => { out('<span class="c">Jul 2025 → now</span>  System Engineer, TCS Digital\n<span class="c">Dec 2024 → Jun 2025</span>  AI Engineer, Scale AI\n<span class="c">Oct 2023 → Apr 2024</span>  PRISM Intern, Samsung'); setTimeout(() => go('log'), 500); },
+    exp: () => { out('<span class="c">Jul 2025 → now</span>  System Engineer, TCS Innovations\n<span class="c">Dec 2024 → Jun 2025</span>  AI Engineer, Scale AI\n<span class="c">Oct 2023 → Apr 2024</span>  PRISM Intern, Samsung'); setTimeout(() => go('log'), 500); },
     contact: () => { out('mail     mattaraghav67@gmail.com\ngithub   github.com/Rxghavdev\nlinkedin linkedin.com/in/rxghavdev'); setTimeout(() => go('contact'), 500); },
     resume: () => { out('downloading résumé…', 'c'); const a = document.createElement('a'); a.href = 'Raghav_Matta_Resume.pdf'; a.download = ''; a.click(); },
     theme: a => out(setTheme(a) ? `accent → ${a} ✔` : 'usage: theme &lt;lime|pink|cyan|orange|violet&gt;', setTheme(a) ? 'c' : 'e'),
@@ -269,6 +284,7 @@
     flip: () => { document.body.classList.toggle('flip'); out('(╯°□°)╯︵ ┻━┻', 'p'); },
     coffee: () => out('        ( (\n         ) )\n      .______.\n      |      |]\n      \\      /\n       `----\'\n  brewing… 99% caffeine, 1% regret.', 'p'),
     clear: () => { tb.innerHTML = ''; },
+    meow: () => { out('=^..^=  meow.', 'p'); catPop(['MEOW', 'HIRE HIM']); },
     ls: () => out('about.md  career.log  projects/  memes/  <span class="d">secrets.txt</span>'),
     'cat secrets.txt': () => out('nice try. but try: <span class="c">sudo hire raghav</span>', 'p'),
     pwd: () => out('/home/raghav/portfolio'),
