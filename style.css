@@ -247,3 +247,4 @@ body.shake main{animation:shake .15s 8}
 .catbox .mt{top:14px}.catbox .mb{bottom:48px}
 .catbox small{display:block;margin-top:12px;font:12px var(--mono);color:var(--muted)}
 @keyframes catin{from{opacity:0;transform:scale(.5) rotate(-8deg)}}
+[hidden]{display:none!important}

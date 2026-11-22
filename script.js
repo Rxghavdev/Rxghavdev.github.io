@@ -6,13 +6,7 @@
   const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
 
   /* ---------- boot ---------- */
-  const bootLines = [
-    '> booting raghav.os v2025.11 ...',
-    '> loading caffeine ............ [ok]',
-    '> mounting 2000+ LLM reviews .. [ok]',
-    '> compiling personality ....... [warn: sarcasm overflow]',
-    '> ready.'
-  ];
+  const bootLines = ['> initializing portfolio ...', '> ready.'];
   const boot = $('#boot'), bootText = $('#bootText');
   const seen = sessionStorage.getItem('booted');
   if (seen || reduced) {
@@ -126,7 +120,7 @@
   $$('.reveal').forEach(el => io.observe(el));
 
   /* ---------- typed role ---------- */
-  const roles = ['Full Stack Engineer', 'Teaches LLMs manners (RLHF)', 'Spring Boot whisperer', 'Hackathon menace', 'IEEE-published, allegedly', 'Writes code, breaks prod, fixes prod'];
+  const roles = ['Backend Engineer', 'AI Engineer', 'Spring Boot Microservices', 'LLM Evaluation (RLHF)', 'IEEE-published Researcher'];
   const typed = $('#typed');
   let ri = 0, ci = 0, del = false;
   (function type() {
@@ -172,7 +166,6 @@
       chip.style.transition = 'transform .7s cubic-bezier(.34,1.8,.5,1), border-color .2s, color .2s, box-shadow .2s';
       chip.style.transform = ''; chip.style.borderColor = '';
       setTimeout(() => chip.style.zIndex = '', 700);
-      if (Math.random() < .2) toast(`<b>${chip.textContent}</b>: ${reactions[Math.floor(Math.random() * reactions.length)]}`);
     };
     chip.addEventListener('pointerup', end); chip.addEventListener('pointercancel', end);
   });
@@ -194,13 +187,6 @@
     if (bump) { el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
   };
   $$('.meme').forEach(el => { const i = +el.dataset.i; paint(el, i); el.addEventListener('click', () => paint(el, i, true)); });
-  $('#randomMeme').addEventListener('click', () => {
-    location.hash = '#memes';
-    const els = $$('.meme'); const k = Math.floor(Math.random() * els.length);
-    setTimeout(() => paint(els[k], k, true), 600);
-    toast('<b>meme.exe</b> deployed 🎲');
-  });
-
   /* ---------- cat popup ---------- */
   const catpop = $('#catpop');
   const catPop = (caps, idx) => {
@@ -219,13 +205,6 @@
     $('#mailHint').textContent = 'copied ✔'; confetti(60);
     setTimeout(() => $('#mailHint').textContent = 'click to copy', 2000);
   });
-  $('#dont').addEventListener('click', () => {
-    document.body.classList.add('shake'); confetti(160);
-    catPop(['I SAID', 'DO NOT PRESS'], 3);
-    toast('<b>Achievement unlocked:</b> Curious Engineer 🏅');
-    setTimeout(() => document.body.classList.remove('shake'), 1300);
-  });
-
   /* ---------- matrix ---------- */
   const mx = $('#matrix'), mc = mx.getContext('2d');
   let matrixOn = false, mTimer;
@@ -270,11 +249,10 @@
   <span class="c">contact</span>     how to reach me
   <span class="c">resume</span>      download my résumé
   <span class="c">theme</span> &lt;lime|pink|cyan|orange|violet&gt;
-  <span class="c">matrix</span> · <span class="c">party</span> · <span class="c">flip</span> · <span class="c">coffee</span> · <span class="c">meow</span> · <span class="c">clear</span>
-  <span class="d">…and a few secrets. Konami code works too.</span>`),
-    whoami: () => out('Raghav Matta — System Engineer @ TCS, ex-Scale AI, ex-Samsung PRISM.\nBuilds backends, trains LLMs, wins (some) hackathons.'),
-    skills: () => out('<span class="c">lang</span>   Java · Python · JavaScript · C\n<span class="c">fw</span>     Spring Boot · Angular · React · Next · Node · Django · Flask · Flutter\n<span class="c">ai</span>     TensorFlow · LangChain · FAISS · RLHF\n<span class="c">data</span>   PostgreSQL · MySQL · Redis · MongoDB · Kafka\n<span class="c">cloud</span>  AWS · Azure · GCP'),
-    projects: () => { out('1. DocuBot        — AI for legal/medical docs\n2. SwiftDrop      — realtime delivery, Kafka + Maps\n3. Dauth KYC      — Aadhaar/PAN → Verified NFT\n4. Quantum ML     — IEEE 2025 paper\n5. Crypto Analyzer— Kavach 2023, Top 5 India'); setTimeout(() => go('work'), 500); },
+  <span class="c">clear</span>`),
+    whoami: () => out('Raghav Matta — Backend & AI Engineer.\nSystem Engineer @ TCS Innovations, ex-Scale AI, ex-Samsung PRISM.'),
+    skills: () => out('<span class="c">lang</span>   Java · Python · JavaScript · C\n<span class="c">fw</span>     Spring Boot · Node · Express · Django · Flask · Angular · React · Next\n<span class="c">ai</span>     TensorFlow · LangChain · FAISS · RLHF\n<span class="c">data</span>   PostgreSQL · MySQL · Redis · MongoDB · Kafka\n<span class="c">cloud</span>  AWS · Azure · GCP'),
+    projects: () => { out('1. Hawa           — India AQI from CPCB data\n2. DocuBot        — AI for legal/medical docs\n3. SwiftDrop      — realtime delivery, Kafka + Maps\n4. Dauth KYC      — Aadhaar/PAN → Verified NFT\n5. Sloww          — internet speed test'); setTimeout(() => go('work'), 500); },
     exp: () => { out('<span class="c">Jul 2025 → now</span>  System Engineer, TCS Innovations\n<span class="c">Dec 2024 → Jun 2025</span>  AI Engineer, Scale AI\n<span class="c">Oct 2023 → Apr 2024</span>  PRISM Intern, Samsung'); setTimeout(() => go('log'), 500); },
     contact: () => { out('mail     mattaraghav67@gmail.com\ngithub   github.com/Rxghavdev\nlinkedin linkedin.com/in/rxghavdev'); setTimeout(() => go('contact'), 500); },
     resume: () => { out('downloading résumé…', 'c'); const a = document.createElement('a'); a.href = 'Raghav_Matta_Resume.pdf'; a.download = ''; a.click(); },
@@ -284,8 +262,9 @@
     flip: () => { document.body.classList.toggle('flip'); out('(╯°□°)╯︵ ┻━┻', 'p'); },
     coffee: () => out('        ( (\n         ) )\n      .______.\n      |      |]\n      \\      /\n       `----\'\n  brewing… 99% caffeine, 1% regret.', 'p'),
     clear: () => { tb.innerHTML = ''; },
+    memes: () => { const s = $('#memes'); s.hidden = false; $$('.reveal', s).forEach(el => el.classList.add('in')); out('secret section unlocked 🐱', 'p'); setTimeout(() => s.scrollIntoView({ behavior: 'smooth' }), 300); },
     meow: () => { out('=^..^=  meow.', 'p'); catPop(['MEOW', 'HIRE HIM']); },
-    ls: () => out('about.md  career.log  projects/  memes/  <span class="d">secrets.txt</span>'),
+    ls: () => out('about.md  career.log  projects/'),
     'cat secrets.txt': () => out('nice try. but try: <span class="c">sudo hire raghav</span>', 'p'),
     pwd: () => out('/home/raghav/portfolio'),
     date: () => out(new Date().toString()),
@@ -323,14 +302,12 @@
   const items = [
     ['Go to: About', 'section', () => go('about')], ['Go to: Career (git log)', 'section', () => go('log')],
     ['Go to: Projects', 'section', () => go('work')], ['Go to: Skills', 'section', () => go('skills')],
-    ['Go to: Achievements', 'section', () => go('trophies')], ['Go to: Memes', 'section', () => go('memes')],
+    ['Go to: Achievements', 'section', () => go('trophies')], 
     ['Go to: Contact', 'section', () => go('contact')],
     ['Download résumé', 'action', () => cmds.resume()], ['Copy email', 'action', () => mail.click()],
     ['Open GitHub', 'link', () => open('https://github.com/Rxghavdev', '_blank')],
     ['Open LinkedIn', 'link', () => open('https://linkedin.com/in/rxghavdev', '_blank')],
-    ['Toggle Matrix mode', 'fun', () => matrix()], ['Confetti', 'fun', () => confetti(200)],
-    ['Flip the page', 'fun', () => document.body.classList.toggle('flip')],
-    ...Object.keys(themes).map(t => [`Theme: ${t}`, 'theme', () => setTheme(t)])
+        ...Object.keys(themes).map(t => [`Theme: ${t}`, 'theme', () => setTheme(t)])
   ];
   let sel = 0, shown = [];
   const render = () => {
@@ -379,6 +356,6 @@
   console.log('%cHey, fellow dev 👋', 'font:700 22px monospace;color:#c6ff3d');
   console.log('%cLike what you see? mattaraghav67@gmail.com', 'font:14px monospace');
 
-  let idleToast = setTimeout(() => toast('psst — press <b>⌘K</b> or <b>Ctrl+K</b>'), 9000);
+  let idleToast = 0;
   addEventListener('keydown', () => clearTimeout(idleToast), { once: true });
 })();
