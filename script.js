@@ -205,6 +205,13 @@
     $('#mailHint').textContent = 'copied ✔'; confetti(60);
     setTimeout(() => $('#mailHint').textContent = 'click to copy', 2000);
   });
+  $('#dont').addEventListener('click', () => {
+    document.body.classList.add('shake'); confetti(160);
+    catPop(['I SAID', 'DO NOT PRESS'], 3);
+    toast('<b>Achievement unlocked:</b> Curious Engineer 🏅');
+    setTimeout(() => document.body.classList.remove('shake'), 1300);
+  });
+
   /* ---------- matrix ---------- */
   const mx = $('#matrix'), mc = mx.getContext('2d');
   let matrixOn = false, mTimer;
@@ -249,7 +256,8 @@
   <span class="c">contact</span>     how to reach me
   <span class="c">resume</span>      download my résumé
   <span class="c">theme</span> &lt;lime|pink|cyan|orange|violet&gt;
-  <span class="c">clear</span>`),
+  <span class="c">memes</span> · <span class="c">matrix</span> · <span class="c">party</span> · <span class="c">flip</span> · <span class="c">coffee</span> · <span class="c">meow</span> · <span class="c">clear</span>
+  <span class="d">…and a few secrets. Konami code works too.</span>`),
     whoami: () => out('Raghav Matta — Backend & AI Engineer.\nSystem Engineer @ TCS Innovations, ex-Scale AI, ex-Samsung PRISM.'),
     skills: () => out('<span class="c">lang</span>   Java · Python · JavaScript · C\n<span class="c">fw</span>     Spring Boot · Node · Express · Django · Flask · Angular · React · Next\n<span class="c">ai</span>     TensorFlow · LangChain · FAISS · RLHF\n<span class="c">data</span>   PostgreSQL · MySQL · Redis · MongoDB · Kafka\n<span class="c">cloud</span>  AWS · Azure · GCP'),
     projects: () => { out('1. Hawa           — India AQI from CPCB data\n2. DocuBot        — AI for legal/medical docs\n3. SwiftDrop      — realtime delivery, Kafka + Maps\n4. Dauth KYC      — Aadhaar/PAN → Verified NFT\n5. Sloww          — internet speed test'); setTimeout(() => go('work'), 500); },

@@ -122,7 +122,7 @@ kbd{font-size:11px;padding:1px 6px;border:1px solid var(--line);border-bottom-wi
 .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid var(--line);border-radius:18px;padding:28px;position:relative;overflow:hidden}
 .card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(var(--acc-rgb),.09),transparent 45%);opacity:0;transition:opacity .3s;pointer-events:none}
 .card:hover::before{opacity:1}
-.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+.about-grid{display:grid;grid-template-columns:1fr;gap:20px}
 @media(max-width:860px){.about-grid{grid-template-columns:1fr}}
 .readme{font-size:17px;color:#c9c9cf}
 .readme p+p{margin-top:16px}
